@@ -1,80 +1,93 @@
 ---
 const performances = [
-  {
-    title: "Feria de Huapango",
-    date: "July 15, 2023",
-    location: "Pachuca, Hidalgo"
-  },
-  {
-    title: "Festival Cultural de la Sierra",
-    date: "August 5, 2023",
-    location: "Jacala, Hidalgo"
-  },
-  {
-    title: "Gala de Jóvenes Talentos",
-    date: "September 10, 2023",
-    location: "Teatro Hidalgo Bartolomé de Medina, Pachuca"
-  }
+    {
+        title: "Feria del Huapango Salvaje",
+        date: "July 15, 2023",
+        location: "Pachuca, Hidalgo",
+    },
+    {
+        title: "Festival Cultural de la Sierra de los Monos",
+        date: "August 5, 2023",
+        location: "Jacala, Hidalgo",
+    },
+    {
+        title: "Gala de Jóvenes Gorilas",
+        date: "September 10, 2023",
+        location: "Teatro Hidalgo Bartolomé de Medina, Pachuca",
+    },
 ];
 ---
+
 <section id="performances" class="performances">
-  <div class="container">
-    <h2>Upcoming Performances</h2>
-    <div class="performance-list">
-      {performances.map((performance, index) => (
-        <div class="performance-card" style={`animation-delay: ${index * 0.2}s`}>
-          <h3>{performance.title}</h3>
-          <p class="date">{performance.date}</p>
-          <p class="location">{performance.location}</p>
+    <div class="container">
+        <h2>Upcoming Performances</h2>
+        <div class="performance-list">
+            {
+                performances.map((performance, index) => (
+                    <div
+                        class="performance-card"
+                        style={`animation-delay: ${index * 0.2}s`}
+                    >
+                        <h3>{performance.title}</h3>
+                        <p class="date">{performance.date}</p>
+                        <p class="location">{performance.location}</p>
+                    </div>
+                ))
+            }
         </div>
-      ))}
     </div>
-  </div>
 </section>
 
 <style>
-  .performances {
-    background-color: rgb(var(--background));
-    padding: 6rem 0;
-  }
-  h2 {
-    text-align: center;
-    color: rgb(var(--accent));
-    font-size: 3rem;
-    margin-bottom: 3rem;
-  }
-  .performance-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  .performance-card {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.5s ease-out forwards;
-    opacity: 0;
-  }
-  .performance-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  }
-  h3 {
-    color: rgb(var(--accent));
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  .date, .location {
-    margin: 0.5rem 0;
-  }
-  .date {
-    font-weight: bold;
-    color: rgb(var(--accent-dark));
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+    .performances {
+        background-color: rgb(var(--background));
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(var(--accent));
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    .performance-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    .performance-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
+    }
+    .performance-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    h3 {
+        color: rgb(var(--accent));
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+    .date,
+    .location {
+        margin: 0.5rem 0;
+    }
+    .date {
+        font-weight: bold;
+        color: rgb(var(--accent-dark));
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
