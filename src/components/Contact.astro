@@ -1,0 +1,45 @@
+---
+const emailAddress = "diego@hotmail.com";
+const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`mailto:${emailAddress}`)}`;
+---
+
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Contacto</h2>
+        <div class="contact-info">
+            <p>Escanea el código QR para enviarme un correo electrónico:</p>
+            <img src={qrCodeUrl} alt="QR Code for email" class="qr-code" />
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact {
+        background-color: white;
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(var(--accent));
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    .contact-info {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    p {
+        font-size: 1.2rem;
+        color: rgb(var(--accent-dark));
+        margin-bottom: 1.5rem;
+    }
+    .qr-code {
+        display: block;
+        margin: 0 auto;
+        border: 2px solid rgb(var(--accent));
+        border-radius: 10px;
+        padding: 10px;
+        background-color: white;
+    }
+</style>

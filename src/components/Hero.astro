@@ -1,0 +1,68 @@
+---
+
+---
+
+<section id="home" class="hero">
+    <div class="hero-content container">
+        <h1>Diego Rodríguez</h1>
+        <p>Joven Violinista Huapanguero</p>
+        <a href="#contact" class="cta-button">Contacto</a>
+    </div>
+</section>
+
+<style>
+    .hero {
+        background-image: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            ),
+            url("/hero_1.webp");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+    .hero-content {
+        animation: fadeIn 1.5s ease-out;
+    }
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .cta-button {
+        background-color: rgb(var(--accent));
+        color: white;
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    .cta-button:hover {
+        background-color: rgb(var(--accent-light));
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
