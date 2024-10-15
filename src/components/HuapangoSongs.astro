@@ -1,0 +1,126 @@
+---
+const huapangoSongs = [
+    {
+        title: "El Toro Requesón",
+        description:
+            "Un huapango tradicional que narra la historia de un toro legendario conocido por su bravura y fuerza. La canción describe las hazañas del animal en las corridas y su fama entre los aficionados. Con su ritmo vivaz y melodía pegajosa, típicos del estilo huapango, esta pieza celebra la cultura taurina de la región.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "La Acamaya",
+        description:
+            "Un huapango folclórico que rinde homenaje a la acamaya, un crustáceo de agua dulce muy apreciado en la gastronomía regional. La canción describe con humor y picardía la pesca de este camarón de río, mezclando referencias culinarias con dobles sentidos típicos del género. Su ritmo alegre y contagioso invita al baile, mientras la letra refleja las tradiciones y el espíritu festivo de la región.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "El Caballito",
+        description:
+            "Un huapango tradicional que narra las aventuras y desventuras de un joven jinete y su caballo. La canción mezcla elementos de romance y comedia, describiendo con vivacidad las peripecias del protagonista en diversas situaciones. Con su característico ritmo alegre y el acompañamiento vibrante del violín huasteco, El Caballito celebra la cultura ecuestre de la región y la estrecha relación entre el hombre y su montura.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "El Canario",
+        description:
+            "Un huapango alegre y pintoresco que rinde homenaje al canario, ave conocida por su melodioso canto. La canción emplea metáforas y símiles ingeniosos para comparar el trino del pájaro con la voz de un enamorado. Con su ritmo vivaz y el característico falsete del huapango, El Canario entrelaza temas de amor, naturaleza y música, creando una pieza que invita tanto a la reflexión como al baile.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "El Xochipitzahuatl",
+        description:
+            "Un huapango ceremonial de gran importancia cultural que tiene sus raíces en las tradiciones prehispánicas de la región Huasteca. La palabra xochipitzahuatl proviene del náhuatl y significa flor menudita o flor delgada. Este huapango se asocia principalmente con las ceremonias nupciales indígenas, aunque también se interpreta en otras celebraciones comunitarias. La música combina elementos del huapango tradicional con ritmos y melodías de origen prehispánico, creando una pieza única que sirve como puente entre el pasado ancestral y el presente. La canción se caracteriza por su ritmo pausado y solemne, acompañado por el sonido distintivo del violín huasteco y la jarana. La letra, cuando está presente, suele estar en náhuatl o en una mezcla de náhuatl y español, y hace referencia a símbolos y conceptos relacionados con la unión, la fertilidad y la bendición de la pareja o la comunidad.",
+        origin: "Región Huasteca, México (con raíces prehispánicas)",
+    },
+    {
+        title: "El Marinero",
+        description:
+            "Un huapango tradicional que narra las aventuras y añoranzas de un marinero en sus viajes por el mar. La canción combina elementos de romance, nostalgia y la vida en alta mar, describiendo con colorido detalle las experiencias del protagonista en puertos lejanos y su anhelo por volver a casa. Con su ritmo cadencioso que evoca el vaivén de las olas y el característico rasgueo de la jarana huasteca, El Marinero captura la esencia de la vida marítima y el espíritu aventurero.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "El Ausente",
+        description:
+            "Un huapango melancólico y emotivo que retrata el dolor de la separación y la nostalgia por el ser querido ausente. La canción explora temas de amor, distancia y añoranza, narrando la historia de alguien que ha tenido que dejar su hogar y a sus seres queridos. Con su melodía conmovedora y el lamento característico del violín huasteco, El Ausente refleja la experiencia común de la migración y el desarraigo en la región. Su ritmo, aunque manteniendo la estructura del huapango, es más pausado, permitiendo que la letra y la emoción tomen protagonismo.",
+        origin: "Región Huasteca, México",
+    },
+    {
+        title: "La Leva",
+        description:
+            "Un huapango tradicional que aborda el tema de la conscripción militar obligatoria, conocida coloquialmente como la leva. La canción narra con tono agridulce y a veces irónico las experiencias de los jóvenes reclutados para el servicio militar. Con su ritmo característico y el vibrante acompañamiento del violín, La Leva refleja las realidades sociales y emocionales asociadas con esta práctica: la separación de los seres queridos, el deber patriótico y la incertidumbre del futuro. La letra suele mezclar sentimientos de orgullo, temor y nostalgia, ofreciendo una visión compleja de esta tradición militar.",
+        origin: "Mexico (various regions)",
+    },
+];
+---
+
+<section id="huapango-songs" class="huapango-songs">
+    <div class="container">
+        <h2>Canciones Populares de Huapango</h2>
+        <div class="song-list">
+            {
+                huapangoSongs.map((song, index) => (
+                    <div
+                        class="song-card"
+                        style={`animation-delay: ${index * 0.2}s`}
+                    >
+                        <h3>{song.title}</h3>
+                        <p class="description">{song.description}</p>
+                        <p class="origin">Origin: {song.origin}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .huapango-songs {
+        background-color: white;
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(var(--accent));
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    .song-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    .song-card {
+        background-color: rgb(var(--background));
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
+    }
+    .song-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    h3 {
+        color: rgb(var(--accent));
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+    .description {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    .origin {
+        font-style: italic;
+        color: rgb(var(--accent-dark));
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
