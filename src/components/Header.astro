@@ -5,7 +5,12 @@
 <header>
     <nav class="container">
         <a href="#home" class="logo">Diego Rodríguez</a>
-        <ul>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="menu">
             <li><a href="#home">Inicio</a></li>
             <li><a href="#about">Acerca</a></li>
             <li><a href="#performances">Actuaciones</a></li>
@@ -36,13 +41,13 @@
         color: white;
         text-decoration: none;
     }
-    ul {
+    .menu {
         display: flex;
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
-    li {
+    .menu li {
         margin-left: 2rem;
     }
     a {
@@ -54,17 +59,81 @@
     a:hover {
         color: rgb(var(--accent-light));
     }
+    .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
     @media (max-width: 768px) {
         nav {
+            flex-wrap: wrap;
+        }
+        .hamburger {
+            display: block;
+        }
+        .menu {
             flex-direction: column;
-            align-items: flex-start;
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
-        ul {
-            margin-top: 1rem;
+        .menu.active {
+            max-height: 300px; /* Adjust this value based on your menu's height */
         }
-        li {
-            margin-left: 0;
-            margin-right: 1rem;
+        .menu li {
+            margin: 0.5rem 0;
         }
     }
 </style>
+
+<script>
+    function initMenu() {
+        const hamburger = document.querySelector(".hamburger");
+        const menu = document.querySelector(".menu");
+        const menuItems = document.querySelectorAll(".menu a");
+
+        if (!hamburger || !menu) {
+            return;
+        }
+
+        function toggleMenu() {
+            menu.classList.toggle("active");
+            hamburger.classList.toggle("active");
+            const isExpanded =
+                hamburger.getAttribute("aria-expanded") === "true" || false;
+            hamburger.setAttribute("aria-expanded", !isExpanded);
+        }
+
+        hamburger.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleMenu();
+        });
+
+        menuItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        hamburger.setAttribute("aria-expanded", "false");
+    }
+
+    // Run on initial load
+    initMenu();
+
+    // Run after each navigation in Astro
+    document.addEventListener("astro:page-load", initMenu);
+</script>
