@@ -113,7 +113,7 @@
             hamburger.classList.toggle("active");
             const isExpanded =
                 hamburger.getAttribute("aria-expanded") === "true" || false;
-            hamburger.setAttribute("aria-expanded", !isExpanded);
+                hamburger.setAttribute("aria-expanded", (!isExpanded).toString());
         }
 
         hamburger.addEventListener("click", (e) => {
