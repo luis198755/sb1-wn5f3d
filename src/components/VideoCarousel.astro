@@ -1,0 +1,102 @@
+---
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const videos = [
+    { id: "jnUcheL0xMk", title: "Juan Pérez at Feria de Huapango" },
+    {
+        id: "-3OvO8Cqz-Q",
+        title: "Live Performance at Festival Cultural de la Sierra",
+    },
+    { id: "VIDEO_ID_3", title: "Juan Pérez - Huapango Medley" },
+];
+---
+
+<section id="videos" class="video-carousel">
+    <div class="container">
+        <h2>Watch Juan Perform</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                {
+                    videos.map((video) => (
+                        <div class="swiper-slide">
+                            <div class="video-wrapper">
+                                <iframe
+                                    width="100%"
+                                    height="315"
+                                    src={`https://www.youtube.com/embed/${video.id}`}
+                                    title={video.title}
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                />
+                                <h3>{video.title}</h3>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Pagination } from "swiper/modules";
+
+    new Swiper(".swiper", {
+        modules: [Navigation, Pagination],
+        spaceBetween: 30,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+    });
+</script>
+
+<style>
+    .video-carousel {
+        background-color: rgb(var(--background));
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(var(--accent));
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    .video-wrapper {
+        margin-bottom: 1rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        text-align: center;
+        color: rgb(var(--text));
+    }
+    :global(.swiper-button-next),
+    :global(.swiper-button-prev) {
+        color: rgb(var(--accent));
+    }
+    :global(.swiper-pagination-bullet-active) {
+        background-color: rgb(var(--accent));
+    }
+</style>
