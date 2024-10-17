@@ -1,6 +1,6 @@
 ---
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -8,43 +8,51 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Huapanguero Kid Violinist - Young Talent in Traditional Mexican Music" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="Diego Niño Violinista Huapanguero - Joven Talento en la Música Tradicional Mexicana"
+        />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Dancing+Script:wght@700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <slot />
+    </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 204, 85, 0;
-		--accent-light: 255, 166, 0;
-		--accent-dark: 153, 51, 0;
-		--background: 255, 253, 240;
-		--text: 51, 51, 51;
-	}
-	html {
-		font-family: 'Poppins', sans-serif;
-		background: rgb(var(--background));
-		color: rgb(var(--text));
-		scroll-behavior: smooth;
-	}
-	body {
-		margin: 0;
-		padding: 0;
-	}
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 1rem;
-	}
-	h1, h2, h3 {
-		font-family: 'Dancing Script', cursive;
-	}
+    :root {
+        --accent: 204, 85, 0;
+        --accent-light: 255, 166, 0;
+        --accent-dark: 153, 51, 0;
+        --background: 255, 253, 240;
+        --text: 51, 51, 51;
+    }
+    html {
+        font-family: "Poppins", sans-serif;
+        background: rgb(var(--background));
+        color: rgb(var(--text));
+        scroll-behavior: smooth;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    h1,
+    h2,
+    h3 {
+        font-family: "Dancing Script", cursive;
+    }
 </style>
