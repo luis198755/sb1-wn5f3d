@@ -4,16 +4,19 @@ const performances = [
         title: "Feria del Huapango Salvaje",
         date: "July 15, 2024",
         location: "Puebla, Puebla",
+        image: "pres01.webp",
     },
     {
         title: "Festival Cultural de la Sierra de los Monos",
         date: "August 5, 2024",
         location: "Jacala, Hidalgo",
+        image: "pres02.webp",
     },
     {
         title: "Gala de Jóvenes Gorilas",
         date: "September 10, 2024",
         location: "Teatro Hidalgo Bartolomé de Medina, Pachuca",
+        image: "pres03.webp",
     },
 ];
 ---
@@ -28,16 +31,22 @@ const performances = [
                         class="performance-card"
                         style={`animation-delay: ${index * 0.2}s`}
                     >
-                        <h3>{performance.title}</h3>
-                        <p class="date">{performance.date}</p>
-                        <p class="location">{performance.location}</p>
+                        <img
+                            src={performance.image}
+                            alt={performance.title}
+                            class="performance-image"
+                        />
+                        <div class="performance-details">
+                            <h3>{performance.title}</h3>
+                            <p class="date">{performance.date}</p>
+                            <p class="location">{performance.location}</p>
+                        </div>
                     </div>
                 ))
             }
         </div>
     </div>
 </section>
-
 <style>
     .performances {
         background-color: rgb(var(--background));
@@ -56,16 +65,24 @@ const performances = [
     }
     .performance-card {
         background-color: white;
-        padding: 2rem;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
         animation: fadeInUp 0.5s ease-out forwards;
         opacity: 0;
+        overflow: hidden;
     }
     .performance-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    .performance-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .performance-details {
+        padding: 2rem;
     }
     h3 {
         color: rgb(var(--accent));
