@@ -2,19 +2,21 @@
 import { Image } from "astro:assets";
 
 const bentoItems = [
-    { src: "/hero_1.webp", alt: "Juan practicing violin", size: "large" },
-    { src: "/hero_2.webp", alt: "Juan's violin close-up", size: "small" },
-    { src: "/hero_3.webp", alt: "Juan with his music teacher", size: "small" },
-    { src: "/hero_1.webp", alt: "Juan's sheet music", size: "medium" },
-    { src: "/hero_2.webp", alt: "Juan at a music workshop", size: "medium" },
+    { src: "/hero_1.webp", alt: "Diego practicing violin", size: "large" },
+    { src: "/hero_2.webp", alt: "Diego's violin close-up", size: "small" },
+    { src: "/hero_3.webp", alt: "Diego with his music teacher", size: "small" },
+    { src: "/hero_4.webp", alt: "Diego's sheet music", size: "medium" },
+    { src: "/hero_5.webp", alt: "Diego at a music workshop", size: "medium" },
+    { src: "/pres01.webp", alt: "Diego at a music workshop", size: "medium" },
+    { src: "/hero_3.webp", alt: "Diego at a music workshop", size: "medium" },
     {
-        src: "/hero_2.webp",
-        alt: "Juan's awards and certificates",
+        src: "/pres03.webp",
+        alt: "Diego's awards and certificates",
         size: "small",
     },
     {
-        src: "/hero_3.webp",
-        alt: "Juan's awards and certificates",
+        src: "/pres02.webp",
+        alt: "Diego's awards and certificates",
         size: "small",
     },
 ];
@@ -22,7 +24,7 @@ const bentoItems = [
 
 <section id="bento-gallery" class="bento-gallery">
     <div class="container">
-        <h2>Juan's Journey</h2>
+        <h2>Diego's Journey</h2>
         <div class="bento-grid">
             {
                 bentoItems.map((item, index) => (
