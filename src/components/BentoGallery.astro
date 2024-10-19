@@ -2,41 +2,83 @@
 import { Image } from "astro:assets";
 
 const bentoItems = [
-    { src: "/hero_1.webp", alt: "Diego practicing violin", size: "large" },
-    { src: "/hero_2.webp", alt: "Diego's violin close-up", size: "small" },
-    { src: "/hero_3.webp", alt: "Diego with his music teacher", size: "small" },
-    { src: "/hero_4.webp", alt: "Diego's sheet music", size: "medium" },
-    { src: "/hero_5.webp", alt: "Diego at a music workshop", size: "medium" },
-    { src: "/pres01.webp", alt: "Diego at a music workshop", size: "medium" },
-    { src: "/hero_3.webp", alt: "Diego at a music workshop", size: "medium" },
     {
-        src: "/pres03.webp",
+        src: "/hero_0.webp",
+        alt: "Diego practicing violin",
+        category: "Practice",
+        height: 300,
+    },
+    {
+        src: "/hero_1.webp",
+        alt: "Diego's violin close-up",
+        category: "Instrument",
+        height: 200,
+    },
+    {
+        src: "/hero_2.webp",
+        alt: "Diego with his music teacher",
+        category: "Lessons",
+        height: 250,
+    },
+    {
+        src: "/hero_3.webp",
+        alt: "Diego's sheet music",
+        category: "Theory",
+        height: 350,
+    },
+    {
+        src: "/hero_4.webp",
+        alt: "Diego at a music workshop",
+        category: "Events",
+        height: 280,
+    },
+    {
+        src: "/hero_5.webp",
         alt: "Diego's awards and certificates",
-        size: "small",
+        category: "Achievements",
+        height: 220,
+    },
+    {
+        src: "/pres01.webp",
+        alt: "Diego performing in an orchestra",
+        category: "Performance",
+        height: 320,
     },
     {
         src: "/pres02.webp",
-        alt: "Diego's awards and certificates",
-        size: "small",
+        alt: "Diego's practice room",
+        category: "Environment",
+        height: 240,
+    },
+    {
+        src: "/pres03.webp",
+        alt: "Diego studying music theory",
+        category: "Theory",
+        height: 260,
     },
 ];
 ---
 
-<section id="bento-gallery" class="bento-gallery">
+<section id="masonry-bento-gallery" class="masonry-bento-gallery">
     <div class="container">
-        <h2>Diego's Journey</h2>
-        <div class="bento-grid">
+        <h2>Diego's Musical Journey</h2>
+        <div class="masonry-grid">
             {
                 bentoItems.map((item, index) => (
-                    <div class={`bento-item ${item.size}`} data-index={index}>
+                    <div
+                        class="masonry-item"
+                        style={`height: ${item.height}px;`}
+                        data-index={index}
+                    >
                         <Image
                             src={item.src}
                             alt={item.alt}
-                            width={800}
-                            height={600}
+                            width={400}
+                            height={item.height}
                         />
                         <div class="overlay">
-                            <p>{item.alt}</p>
+                            <p class="title">{item.alt}</p>
+                            <span class="category">{item.category}</span>
                         </div>
                     </div>
                 ))
@@ -52,61 +94,73 @@ const bentoItems = [
 </div>
 
 <style>
-    .bento-gallery {
-        background-color: white;
+    .masonry-bento-gallery {
+        background-color: #f5f5f5;
         padding: 6rem 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
     }
     h2 {
         text-align: center;
-        color: rgb(var(--accent));
+        color: #333;
         font-size: 3rem;
         margin-bottom: 3rem;
     }
-    .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: 200px;
-        gap: 1rem;
+    .masonry-grid {
+        columns: 4 200px;
+        column-gap: 1rem;
     }
-    .bento-item {
+    .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
         position: relative;
+        border-radius: 10px;
         overflow: hidden;
-        border-radius: 15px;
-        transition: transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
         cursor: pointer;
     }
-    .bento-item:hover {
-        transform: scale(1.05);
+    .masonry-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
-    .bento-item img {
+    .masonry-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-    .bento-item.large {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-    .bento-item.medium {
-        grid-column: span 2;
+        display: block;
     }
     .overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: rgba(var(--accent), 0.8);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
         color: white;
-        padding: 0.5rem;
+        padding: 1rem;
         transform: translateY(100%);
         transition: transform 0.3s ease;
     }
-    .bento-item:hover .overlay {
+    .masonry-item:hover .overlay {
         transform: translateY(0);
     }
-    .overlay p {
+    .title {
         margin: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .category {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 0.2rem 0.5rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
     }
     /* Modal styles */
     .modal {
@@ -125,6 +179,8 @@ const bentoItems = [
         display: block;
         width: 80%;
         max-width: 700px;
+        max-height: 80vh;
+        object-fit: contain;
     }
     #caption {
         margin: auto;
@@ -144,6 +200,7 @@ const bentoItems = [
         font-size: 40px;
         font-weight: bold;
         transition: 0.3s;
+        cursor: pointer;
     }
     .close:hover,
     .close:focus {
@@ -152,41 +209,42 @@ const bentoItems = [
         cursor: pointer;
     }
     @media (max-width: 768px) {
-        .bento-grid {
-            grid-template-columns: repeat(2, 1fr);
+        .masonry-grid {
+            columns: 2 150px;
         }
-        .bento-item.large,
-        .bento-item.medium {
-            grid-column: span 1;
-            grid-row: span 1;
+        .modal-content {
+            width: 100%;
         }
     }
 </style>
 
 <script>
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImage") as HTMLImageElement;
-    const captionText = document.getElementById("caption");
-    const closeBtn = document.getElementsByClassName("close")[0];
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
 
-    document.querySelectorAll(".bento-item").forEach((item) => {
-        item.addEventListener("click", function () {
-            const img = this.querySelector("img") as HTMLImageElement;
-            const alt = img.alt;
+        document.querySelectorAll(".masonry-item").forEach((item) => {
+            item.addEventListener("click", function () {
+                const img = this.querySelector("img");
+                const alt = img.alt;
+                const category = this.querySelector(".category").textContent;
 
-            modal.style.display = "block";
-            modalImg.src = img.src;
-            captionText.innerHTML = alt;
+                modal.style.display = "block";
+                modalImg.src = img.src;
+                captionText.innerHTML = `${alt}<br><span class="modal-category">${category}</span>`;
+            });
         });
-    });
 
-    closeBtn.onclick = function () {
-        modal.style.display = "none";
-    };
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
-        }
-    };
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    });
 </script>
