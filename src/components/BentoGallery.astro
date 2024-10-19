@@ -1,0 +1,105 @@
+---
+const bentoItems = [
+    { src: "/hero_1.webp", alt: "Juan practicing violin", size: "large" },
+    { src: "/hero_2.webp", alt: "Juan's violin close-up", size: "small" },
+    { src: "/hero_3.webp", alt: "Juan with his music teacher", size: "small" },
+    { src: "/hero_1.webp", alt: "Juan's sheet music", size: "medium" },
+    { src: "/hero_2.webp", alt: "Juan at a music workshop", size: "medium" },
+    {
+        src: "/hero_2.webp",
+        alt: "Juan's awards and certificates",
+        size: "small",
+    },
+    {
+        src: "/hero_3.webp",
+        alt: "Juan's awards and certificates",
+        size: "small",
+    },
+];
+---
+
+<section id="bento-gallery" class="bento-gallery">
+    <div class="container">
+        <h2>Juan's Journey</h2>
+        <div class="bento-grid">
+            {
+                bentoItems.map((item) => (
+                    <div class={`bento-item ${item.size}`}>
+                        <img src={item.src} alt={item.alt} loading="lazy" />
+                        <div class="overlay">
+                            <p>{item.alt}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .bento-gallery {
+        background-color: white;
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(var(--accent));
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1rem;
+    }
+    .bento-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+    .bento-item:hover {
+        transform: scale(1.05);
+    }
+    .bento-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .bento-item.large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    .bento-item.medium {
+        grid-column: span 2;
+    }
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(var(--accent), 0.8);
+        color: white;
+        padding: 0.5rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    .bento-item:hover .overlay {
+        transform: translateY(0);
+    }
+    .overlay p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+        .bento-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .bento-item.large,
+        .bento-item.medium {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+    }
+</style>
