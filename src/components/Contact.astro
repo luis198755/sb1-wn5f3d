@@ -7,11 +7,11 @@ const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data
     <div class="container">
         <h2>Contacto</h2>
         <div class="contact-info">
-            <p>Escanea el código QR:</p>
+            <p>Escanea el código QR o toca para enviar un correo:</p>
             <div class="qr-container">
-                <img src={qrCodeUrl} alt="QR Code for email" class="qr-code" />
+                <img src={qrCodeUrl} alt="Código QR para enviar correo electrónico" class="qr-code" width="200" height="200" />
                 <div class="email-overlay">
-                    <a href={`mailto:${emailAddress}`}>{emailAddress}</a>
+                    <a href={`mailto:${emailAddress}`} aria-label="Enviar correo electrónico a {emailAddress}">{emailAddress}</a>
                 </div>
             </div>
         </div>
@@ -21,27 +21,28 @@ const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data
 <style>
     .contact {
         background-color: white;
-        padding: 6rem 0;
+        padding: 3rem 1rem;
     }
     h2 {
         text-align: center;
         color: rgb(var(--accent));
-        font-size: 3rem;
-        margin-bottom: 3rem;
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
     }
     .contact-info {
-        max-width: 600px;
+        max-width: 100%;
         margin: 0 auto;
         text-align: center;
     }
     p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: rgb(var(--accent-dark));
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
     .qr-container {
         position: relative;
         display: inline-block;
+        touch-action: manipulation;
     }
     .qr-code {
         display: block;
@@ -51,6 +52,8 @@ const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data
         padding: 10px;
         background-color: white;
         transition: opacity 0.3s ease;
+        max-width: 100%;
+        height: auto;
     }
     .email-overlay {
         position: absolute;
@@ -69,16 +72,40 @@ const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data
     .email-overlay a {
         color: white;
         text-decoration: none;
-        font-size: 0.65rem;
+        font-size: 0.8rem;
         font-weight: bold;
         padding: 0.5rem;
         word-break: break-all;
         text-align: center;
     }
-    .qr-container:hover .qr-code {
-        opacity: 0.3;
+    @media (hover: hover) {
+        .qr-container:hover .qr-code {
+            opacity: 0.3;
+        }
+        .qr-container:hover .email-overlay {
+            opacity: 1;
+        }
     }
-    .qr-container:hover .email-overlay {
-        opacity: 1;
+    @media (hover: none) {
+        .qr-container:active .qr-code {
+            opacity: 0.3;
+        }
+        .qr-container:active .email-overlay {
+            opacity: 1;
+        }
+    }
+    @media (max-width: 600px) {
+        .contact {
+            padding: 2rem 0.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        p {
+            font-size: 0.9rem;
+        }
+        .email-overlay a {
+            font-size: 0.7rem;
+        }
     }
 </style>
