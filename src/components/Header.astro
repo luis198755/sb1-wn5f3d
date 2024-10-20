@@ -1,5 +1,4 @@
 ---
-
 ---
 
 <header>
@@ -12,11 +11,16 @@
         </button>
         <ul class="menu">
             <li><a href="#home">Inicio</a></li>
-            <li><a href="#about">Acerca de Diego</a></li>
-            <li><a href="#performances">Próximas Actuaciones</a></li>
+            <li><a href="#about">Diego</a></li>
             <li><a href="#huapango-songs">Huapangos</a></li>
+            <li class="has-submenu">
+                <a href="#performances">Actuaciones</a>
+                <ul class="submenu">
+                    <li><a href="#upcoming">Próximas</a></li>
+                    <li><a href="#past">Pasadas</a></li>
+                </ul>
+            </li>
             <li><a href="#gallery">Galería</a></li>
-            <li><a href="#videos">Actuaciones</a></li>
             <li><a href="#contact">Contacto</a></li>
         </ul>
     </nav>
@@ -51,15 +55,48 @@
     }
     .menu li {
         margin-left: 2rem;
+        position: relative;
     }
-    a {
+    .menu > li > a {
         color: white;
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease;
     }
-    a:hover {
+    .menu > li > a:hover {
         color: rgb(var(--accent-light));
+    }
+    .has-submenu > a::after {
+        content: '▼';
+        font-size: 0.7em;
+        margin-left: 5px;
+    }
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgba(var(--accent), 0.9);
+        padding: 0.5rem 0;
+        list-style-type: none;
+        min-width: 150px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .has-submenu:hover .submenu {
+        display: block;
+    }
+    .submenu li {
+        margin: 0;
+    }
+    .submenu a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        display: block;
+        transition: background-color 0.3s ease;
+    }
+    .submenu a:hover {
+        background-color: rgba(var(--accent-light), 0.3);
     }
     .hamburger {
         display: none;
@@ -91,10 +128,19 @@
             transition: max-height 0.3s ease-out;
         }
         .menu.active {
-            max-height: 300px; /* Adjust this value based on your menu's height */
+            max-height: 500px; /* Adjusted for submenu */
         }
-        .menu li {
+        .menu > li {
             margin: 0.5rem 0;
+        }
+        .submenu {
+            position: static;
+            display: none;
+            background-color: rgba(var(--accent-light), 0.1);
+            padding-left: 1rem;
+        }
+        .has-submenu.active .submenu {
+            display: block;
         }
     }
 </style>
@@ -103,7 +149,8 @@
     function initMenu() {
         const hamburger = document.querySelector(".hamburger");
         const menu = document.querySelector(".menu");
-        const menuItems = document.querySelectorAll(".menu a");
+        const menuItems = document.querySelectorAll(".menu > li > a");
+        const submenus = document.querySelectorAll(".has-submenu");
 
         if (!hamburger || !menu) {
             return;
@@ -124,8 +171,17 @@
 
         menuItems.forEach((item) => {
             item.addEventListener("click", () => {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 768 && !item.parentElement.classList.contains('has-submenu')) {
                     toggleMenu();
+                }
+            });
+        });
+
+        submenus.forEach((submenu) => {
+            submenu.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    submenu.classList.toggle("active");
                 }
             });
         });
