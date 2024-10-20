@@ -144,3 +144,66 @@
         }
     }
 </style>
+
+<script>
+    function initMenu() {
+        const hamburger = document.querySelector(".hamburger");
+        const menu = document.querySelector(".menu");
+        const menuItems = document.querySelectorAll(".menu > li > a");
+        const submenus = document.querySelectorAll(".has-submenu");
+
+        if (!hamburger || !menu) {
+            return;
+        }
+
+        function toggleMenu() {
+            menu.classList.toggle("active");
+            hamburger.classList.toggle("active");
+            const isExpanded =
+                hamburger.getAttribute("aria-expanded") === "true" || false;
+            hamburger.setAttribute("aria-expanded", (!isExpanded).toString());
+        }
+
+        hamburger.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleMenu();
+        });
+
+        menuItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                if (window.innerWidth <= 768 && !item.parentElement.classList.contains('has-submenu')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        submenus.forEach((submenu) => {
+            const submenuToggle = submenu.querySelector('a');
+            const submenuItems = submenu.querySelectorAll('.submenu a');
+
+            submenuToggle.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    submenu.classList.toggle("active");
+                }
+            });
+
+            submenuItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    if (window.innerWidth <= 768) {
+                        toggleMenu();
+                        submenu.classList.remove("active");
+                    }
+                });
+            });
+        });
+
+        hamburger.setAttribute("aria-expanded", "false");
+    }
+
+    // Run on initial load
+    initMenu();
+
+    // Run after each navigation in Astro
+    document.addEventListener("astro:page-load", initMenu);
+</script>
