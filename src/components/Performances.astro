@@ -56,16 +56,17 @@ const performances = [
 </div>
 
 <script>
-    function handleImageClick(event) {
-        if (event.target.classList.contains("performance-image")) {
-            openModal(event.target.src, event.target.alt);
+    function handleImageClick(event: MouseEvent) {
+        const target = event.target as HTMLImageElement;
+        if (target.classList.contains("performance-image")) {
+            openModal(target.src, target.alt);
         }
     }
 
-    function openModal(imageSrc, imageAlt) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        const captionText = document.getElementById("caption");
+    function openModal(imageSrc: string, imageAlt: string) {
+        const modal = document.getElementById("imageModal") as HTMLElement;
+        const modalImg = document.getElementById("modalImage") as HTMLImageElement;
+        const captionText = document.getElementById("caption") as HTMLElement;
 
         modal.style.display = "block";
         modalImg.src = imageSrc;
@@ -73,20 +74,20 @@ const performances = [
     }
 
     function closeModal() {
-        const modal = document.getElementById("imageModal");
+        const modal = document.getElementById("imageModal") as HTMLElement;
         modal.style.display = "none";
     }
 
     document.addEventListener("DOMContentLoaded", (event) => {
-        const performanceList = document.querySelector(".performance-list");
+        const performanceList = document.querySelector(".performance-list") as HTMLElement;
         performanceList.addEventListener("click", handleImageClick);
 
-        const closeButton = document.querySelector(".close");
+        const closeButton = document.querySelector(".close") as HTMLElement;
         closeButton.addEventListener("click", closeModal);
 
-        const modal = document.getElementById("imageModal");
+        const modal = document.getElementById("imageModal") as HTMLElement;
         window.addEventListener("click", (event) => {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 closeModal();
             }
         });

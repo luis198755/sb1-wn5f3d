@@ -151,10 +151,10 @@ const bentoItems = [
 </style>
 
 <script>
-    const modal = document.getElementById("imageModal");
+    const modal = document.getElementById("imageModal") as HTMLElement;
     const modalImg = document.getElementById("modalImage") as HTMLImageElement;
-    const captionText = document.getElementById("caption");
-    const closeBtn = document.getElementsByClassName("close")[0];
+    const captionText = document.getElementById("caption") as HTMLElement;
+    const closeBtn = document.getElementsByClassName("close")[0] as HTMLElement;
 
     document.querySelectorAll(".bento-item").forEach((item) => {
         item.addEventListener("click", function () {
@@ -167,9 +167,9 @@ const bentoItems = [
         });
     });
 
-    closeBtn.onclick = function () {
+    closeBtn.addEventListener("click", function() {
         modal.style.display = "none";
-    };
+    });
 
     window.onclick = function (event) {
         if (event.target == modal) {

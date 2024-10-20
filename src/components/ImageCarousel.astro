@@ -75,27 +75,35 @@ const images = [
     });
 
     // Modal functionality
-    window.openModal = function (src, alt) {
+    function openModal(src: string, alt: string) {
         const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
+        const modalImg = document.getElementById("modalImage") as HTMLImageElement;
         const captionText = document.getElementById("modalCaption");
-        modal.style.display = "block";
-        modalImg.src = src;
-        captionText.innerHTML = alt;
-    };
+        if (modal && modalImg && captionText) {
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = alt;
+        }
+    }
 
-    window.closeModal = function () {
+    function closeModal() {
         const modal = document.getElementById("imageModal");
-        modal.style.display = "none";
-    };
-
-    // Close modal when clicking outside the image
-    window.onclick = function (event) {
-        const modal = document.getElementById("imageModal");
-        if (event.target == modal) {
+        if (modal) {
             modal.style.display = "none";
         }
+    }
+
+    // Close modal when clicking outside the image
+    window.onclick = function (event: MouseEvent) {
+        const modal = document.getElementById("imageModal");
+        if (event.target == modal) {
+            closeModal();
+        }
     };
+
+    // Attach functions to window object
+    (window as any).openModal = openModal;
+    (window as any).closeModal = closeModal;
 </script>
 
 <style>
