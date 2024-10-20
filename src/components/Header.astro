@@ -178,11 +178,23 @@
         });
 
         submenus.forEach((submenu) => {
-            submenu.addEventListener("click", (e) => {
+            const submenuToggle = submenu.querySelector('a');
+            const submenuItems = submenu.querySelectorAll('.submenu a');
+
+            submenuToggle.addEventListener("click", (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     submenu.classList.toggle("active");
                 }
+            });
+
+            submenuItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    if (window.innerWidth <= 768) {
+                        toggleMenu();
+                        submenu.classList.remove("active");
+                    }
+                });
             });
         });
 
